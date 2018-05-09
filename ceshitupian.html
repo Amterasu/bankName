@@ -1,0 +1,51 @@
+<html>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui@1.4/lib/theme-default/index.css">
+<!-- 引入组件库 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui@1.4/lib/index.js"></script>
+
+<head>
+
+</head>
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .info {
+    width: 200px;
+    height: 200px;
+    margin: 100px auto;
+  }
+</style>
+<div class="info" id="app">
+  <div class="infoc">
+    <el-input placeholder="请选择日期" icon="search" v-model="input" :on-icon-click="search">
+    </el-input>
+    <div>{{bankName}}</div>
+  </div>
+</div>
+
+<body>
+  <script src="./bankUtil.js"></script>
+  <script>
+    let bank = new BankUtil();
+    new Vue({
+      el: '#app',
+      data(){
+        return{
+          input:'62284804025648900181',
+          bankName:'',
+        }
+      },
+      methods:{
+        search(){
+          this.bankName = bank.getBankName(this.input).msg
+        }
+      }
+    })
+  </script>
+
+</html>
